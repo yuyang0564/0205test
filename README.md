@@ -1,16 +1,19 @@
 # 0225
 
-## Project setup
+## 安装方式
 ```
 yarn install
 ```
-
-### Compiles and hot-reloads for development
 ```
-yarn serve
+npm install
 ```
 
-### Compiles and minifies for production
+### 启动项目
+```
+yarn dev
+```
+
+### 打包项目
 ```
 yarn build
 ```
