@@ -7,7 +7,10 @@
     "build": "cross-env NODE_ENV=production vue-cli-service build"
   },
   "dependencies": {
-    "core-js": "^3.6.4"
+    "bootstrap-sass": "^3.4.1",
+    "core-js": "^3.6.4",
+    "font-awesome": "^4.7.0",
+    "nprogress": "^0.2.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.2.0",
