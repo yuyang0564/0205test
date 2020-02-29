@@ -2,8 +2,12 @@
   <div id="app">
     <div id="wrap">
         <the-header></the-header>
-        <the-footer></the-footer>
+        <div id="main-container" class="container main-container">
+          <router-view></router-view>
+          <notifications position='top center' />
+        </div>
     </div>
+    
   </div>
 </template>
 

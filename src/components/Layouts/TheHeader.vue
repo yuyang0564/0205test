@@ -33,40 +33,42 @@
       </div>
 
       
-     <div
-      id="bs-example-navbar-collapse" 
-      class="collapse navbar-collapse"
-      :class="{in: activeCollapse}"
-      aria-expanded="false"
-     >
-      <ul class="nav navbar-nav">
-        <li 
-            v-for="(item , index) in navList"
-            :key="index"
-            :class="{active: index === activeIndex}"
-            @click="changeIndex(index)"
-          >
-            <a href="#">{{ item }}</a>
-          </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
+      <div
+        id="bs-example-navbar-collapse" 
+        class="collapse navbar-collapse"
+        :class="{in: activeCollapse}"
+        aria-expanded="false"
+        >
+        <ul class="nav navbar-nav">
+          <li 
+              v-for="(item , index) in navList"
+              :key="index"
+              :class="{active: index === activeIndex}"
+              @click="changeIndex(index)"
+            >
+              <a href="#">{{ item }}</a>
+            </li>
+        </ul>
+
+
+        <!-- 登录/注册组件 -->
+        <ul class="nav navbar-nav navbar-right">
+          <the-entry></the-entry>
+        </ul>
 
 
 
+      </div><!-- /.navbar-collapse -->
+      
+       
 
-
-
-
-
-
-
-
-
+  
     </div>
   </nav>
 </template>
 
 <script>
+import TheEntry from './TheEntry'
 export default {
   name: 'TheHeader',
   data() {
@@ -86,6 +88,9 @@ export default {
     handlerShow() {
       this.activeCollapse = !this.activeCollapse
     }
+  },
+  components: {
+    TheEntry
   }
 }
 </script>
