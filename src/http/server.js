@@ -1,5 +1,6 @@
 import Axios from 'axios'
 import qs from 'qs'
+import Vue from 'vue'
 //! 是否提交JSON 数据
 const submitJson = false
 //! 根据需求切换请求头
@@ -25,7 +26,7 @@ const formattingParameters = params =>
     if (submitJson) {
       conversionParams = JSON.stringify(params)
     } else {
-      conversionParams = qs.stringify(params)
+      conversionParams = qs.stringify(params, { arrayFormat: 'brackets' })
     }
     return conversionParams
   } else {
@@ -48,11 +49,12 @@ const formattingQueryString = params =>
 }
 
 //! 改变请求头，请求参数混入
-const RequestMixin = (config) => {
+const RequestMixin = (config) =>
+{
 
-  let {method ,data } = config
-  if(!data) return
-  if(['post','put','patch'].includes(method.toLowerCase())) {
+  let { method, data } = config
+  if (!data) return
+  if (['post', 'put', 'patch'].includes(method.toLowerCase())) {
     config.headers[method]['Content-Type'] = submitType
     config.data = formattingParameters(data)
   } else {
@@ -66,28 +68,29 @@ const RequestMixin = (config) => {
 //! 请求拦截器
 http.interceptors.request.use(config =>
 {
-  
+
   RequestMixin(config)
   return config
-}, 
-err =>
-{
-  throw new Error(`发送请求时发生错误${err}`)
-})
+},
+  err =>
+  {
+    throw new Error(`发送请求时发生错误${err}`)
+  })
 
 //! 响应拦截器
 http.interceptors.response.use(response =>
 {
-  
-  let { status , data } = response
-  if(status === 200) {
-      return data
+
+  let { status, data } = response
+  if (status !== 200 || data.code != 200) {
+    Vue.notify({ type: 'error', text: data.msg })
   }
-}, 
-err =>
-{
-  throw new Error(`网络请求发生错误${err}`)
-})
+  return data
+},
+  err =>
+  {
+    throw new Error(`网络请求发生错误${err}`)
+  })
 
 
 export default http

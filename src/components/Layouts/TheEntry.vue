@@ -1,19 +1,28 @@
 <template>
-<div class="navbar-right">
-    
+  <div class="navbar-right">
     <!-- 已登录 -->
     <ul v-if="auth" class="nav navbar-nav github-login">
       <li>
         <a v-drop-down href="javascript:;">
           <span v-if="user">
-            <img  :src="user.avatar" class="avatar-topnav">
+            <img :src="user.avatar" class="avatar-topnav" />
             <span>{{ user.name }}</span>
           </span>
           <span v-else>佚名</span>
           <span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
-          <li @click="logout"><a href="#"><i class="fa fa-sign-out text-md"></i>退出</a></li>
+          <li>
+            <router-link :to="`/user/${user.id}/edit`">
+              <i class="fa fa-cog text-md i-middle"></i>
+              编辑资料
+            </router-link>
+          </li>
+          <li @click="logout">
+            <a href="#">
+              <i class="fa fa-sign-out text-md"></i>退出
+            </a>
+          </li>
         </ul>
       </li>
     </ul>
@@ -27,32 +36,30 @@
         <i class="fa fa-user-plus"></i> 注 册
       </router-link>
     </div>
+
   </div>
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import { mapGetters } from "vuex";
 export default {
-  name: 'TheEntry',
+  name: "TheEntry",
   data() {
-    return {
-    }
+    return {};
   },
   computed: {
-    ...mapGetters(['auth']),
+    ...mapGetters(["auth"]),
     user() {
-      return this.$store.state.user
+      return this.$store.state.user;
     }
   },
-  created() {
-    
-  },
+  created() {},
   methods: {
     logout() {
-      this.$store.dispatch('logout')
+      this.$store.dispatch("logout");
     }
-  },
-}
+  }
+};
 </script>
 
 <style scoped>

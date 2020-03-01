@@ -49,3 +49,14 @@ export const requestLogin = (params) => {
     data: params
   })
 }
+
+export const requestMenus = (params) => {
+  return  Http('/testuser/menus', params)
+}
+
+export const requestUpdateUser = (params) => {
+  return Http('/testuser/update-user',{
+    method: 'patch',
+    data: params
+  })
+}

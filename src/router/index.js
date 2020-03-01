@@ -11,15 +11,23 @@ Vue.use(VueRouter)
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
+  linkExactActiveClass: 'active',
   routes
 })
 
 
 router.beforeEach((to, from, next) => {
   Nprogress.start()
-  let auth = router.app.$options.store.getters.auth
+  let store = router.app.$options.store
+  let auth = store.getters.auth
+  let user = store.state.user
   //!! 已登录用户，无需重复登录
-  if(auth && to.path.includes('/auth')) {
+ 
+  if(
+    (auth && to.path.includes('/auth')) ||
+    (to.meta.auth && !auth) ||
+    (to.path.includes('/user') && to.params.userid != user.id )
+    ) {
     next('/')
   } else {
     next()
