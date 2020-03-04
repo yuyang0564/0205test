@@ -8,6 +8,7 @@ export default new Vuex.Store({
   state: {
     user: ls.getItem('user') || false,
     menuList: ls.getItem('menus') || false,
+    uid: ""
   },
   getters: {
     auth(state)
@@ -34,6 +35,10 @@ export default new Vuex.Store({
     {
       state.menuList = menus
       ls.setItem('menus', menus)
+    },
+    SET_UID(state, uid)
+    {
+      state.uid = uid
     }
   },
   actions: {
@@ -58,6 +63,10 @@ export default new Vuex.Store({
     setMenus({ commit }, data)
     {
       commit('SET_MENUS', data)
+    },
+    setUid({ commit }, data)
+    {
+      commit('SET_UID', data)
     }
   },
   modules: {

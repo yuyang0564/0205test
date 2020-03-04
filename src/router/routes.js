@@ -37,4 +37,32 @@ export default [
       }
     ]
   },
+  {
+    path: "/articles/create",
+    name: "CreateArticle",
+    component: () => import(/* webpackChunkName: "articles" */ "@/views/articles/Create"),
+    meta: { auth: true }
+  },
+  {
+    path: "/articles/:articleId/edit",
+    name: "ArticleUpdate",
+    component: () => import(/* webpackChunkName: "articles" */ "@/views/articles/Edit"),
+    meta: { auth: true }
+  },
+  {
+    path: "/:username/column",
+    component: () => import(/* webpackChunkName: "userarticlecolumn" */ "@v/articles/Column"),
+    children: [
+      {
+        path: "",
+        name: "UserArticleColumn",
+        component: () => import(/* webpackChunkName: "userarticlecolumn" */ "@v/articles/List")
+      },
+      { //! 根据文章id 
+        path: ":articleId",
+        name: "ArticleContent",
+        component: () => import(/* webpackChunkName: "userarticlecolumn" */ "@/views/articles/Content")
+      },
+    ]
+  }
 ]

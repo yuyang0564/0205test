@@ -4,6 +4,19 @@
     <ul v-if="auth" class="nav navbar-nav github-login">
       <li>
         <a v-drop-down href="javascript:;">
+          <i class="fa fa-plus text-md"></i>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <router-link :to="{name: 'CreateArticle'}">
+              <i class="fa fa-paint-brush text-md"></i>
+              创作文章
+            </router-link>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a v-drop-down href="javascript:;">
           <span v-if="user">
             <img :src="user.avatar" class="avatar-topnav" />
             <span>{{ user.name }}</span>
@@ -12,6 +25,12 @@
           <span class="caret"></span>
         </a>
         <ul class="dropdown-menu">
+          <li>
+            <router-link :to="{name: 'UserArticleColumn',params:{username: user.name}}">
+              <i class="fa fa-list-ul text-md i-middle"></i>
+              个人专栏
+            </router-link>
+          </li>
           <li>
             <router-link :to="`/user/${user.id}/edit`">
               <i class="fa fa-cog text-md i-middle"></i>
@@ -36,7 +55,6 @@
         <i class="fa fa-user-plus"></i> 注 册
       </router-link>
     </div>
-
   </div>
 </template>
 

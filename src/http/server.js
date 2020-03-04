@@ -20,7 +20,6 @@ switch (process.env.NODE_ENV) {
 //! POST参数转换
 const formattingParameters = params =>
 {
-
   if (Object.keys(params).length) {
     let conversionParams
     if (submitJson) {
@@ -51,7 +50,6 @@ const formattingQueryString = params =>
 //! 改变请求头，请求参数混入
 const RequestMixin = (config) =>
 {
-
   let { method, data } = config
   if (!data) return
   if (['post', 'put', 'patch'].includes(method.toLowerCase())) {
@@ -63,12 +61,9 @@ const RequestMixin = (config) =>
 }
 
 
-
-
 //! 请求拦截器
 http.interceptors.request.use(config =>
 {
-
   RequestMixin(config)
   return config
 },
@@ -83,7 +78,7 @@ http.interceptors.response.use(response =>
 
   let { status, data } = response
   if (status !== 200 || data.code != 200) {
-    Vue.notify({ type: 'error', text: data.msg })
+    Vue.notify({ title: "发生了一些错误", type: 'error', text: data.msg })
   }
   return data
 },

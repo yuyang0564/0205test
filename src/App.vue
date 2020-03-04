@@ -1,26 +1,27 @@
 <template>
   <div id="app">
     <div id="wrap">
-        <the-header></the-header>
-        <div id="main-container" class="container main-container">
-          <router-view></router-view>
-          <notifications position='top center' />
-        </div>
+      <the-header></the-header>
+      <div id="main-container" class="container main-container">
+        <router-view></router-view>
+        <notifications position="top center" />
+      </div>
     </div>
-    
   </div>
 </template>
 
 <script>
-import TheHeader from '@c/Layouts/TheHeader'
-import TheFooter from '@c/Layouts/TheFooter'
+import TheHeader from "@c/Layouts/TheHeader";
+import TheFooter from "@c/Layouts/TheFooter";
+
 export default {
-  name: 'App',
+  name: "App",
   components: {
     TheHeader,
     TheFooter
-  }
-}
+  },
+  mounted() {}
+};
 </script>
 
 <style lang="scss">

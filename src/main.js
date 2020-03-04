@@ -14,7 +14,7 @@ import 'vuejs-dialog/dist/vuejs-dialog.min.css';
 
 Vue.use(Dialog)
 Vue.use(Notify)
-
+Vue.prototype.$bus = new Vue()
 Vue.config.productionTip = false
 new Vue({
   router,
